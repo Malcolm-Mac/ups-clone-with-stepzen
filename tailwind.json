@@ -75,14 +75,14 @@
 			"paddingRight": 40
 		}
 	},
-	"pt-5": {
-		"style": {
-			"paddingTop": 20
-		}
-	},
 	"pb-0": {
 		"style": {
 			"paddingBottom": 0
+		}
+	},
+	"pt-5": {
+		"style": {
+			"paddingTop": 20
 		}
 	},
 	"uppercase": {
@@ -93,12 +93,6 @@
 	"capitalize": {
 		"style": {
 			"textTransform": "capitalize"
-		}
-	},
-	"text-blue-600": {
-		"style": {
-			"--tw-text-opacity": 1,
-			"color": "rgb(37 99 235 / var(--tw-text-opacity))"
 		}
 	}
 }
