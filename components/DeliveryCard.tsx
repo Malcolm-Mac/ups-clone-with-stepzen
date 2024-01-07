@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import { Card, Divider, Icon } from "@rneui/themed";
 import { useTailwind } from "tailwind-rn/dist";
-import { parseJsonBody } from "@apollo/client/link/http/parseAndCheckHttpResponse";
+import MapView, { Marker } from "react-native-maps";
 
 type Props = {
   order: Order;
@@ -38,7 +38,7 @@ const DeliveryCard = ({ order }: Props) => {
           </Text>
           <Divider color="white" />
         </View>
-        <View style={tw("mx-auto")}>
+        <View style={tw("mx-auto pb-5")}>
           <Text style={tw("text-base text-center text-white font-bold mt-5")}>
             Address
           </Text>
@@ -53,12 +53,36 @@ const DeliveryCard = ({ order }: Props) => {
       <Divider color="white" />
       <View style={tw("p-5")}>
         {order.trackingItems.items.map((item) => (
-          <View style={tw("flex-row justify-between items-center")} key={item.item_id}>
+          <View
+            style={tw("flex-row justify-between items-center")}
+            key={item.item_id}
+          >
             <Text style={tw("text-sm italic text-white")}>{item.name}</Text>
             <Text style={tw("text-white text-xl")}>x {item.quantity}</Text>
           </View>
         ))}
       </View>
+      <MapView
+        initialRegion={{
+          latitude: order.Lat,
+          longitude: order.Lng,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
+        }}
+        style={[tw("w-full"), { height: 200 }]}
+      >
+        {order.Lat && order.Lng && (
+          <Marker
+            coordinate={{
+              latitude: order.Lat,
+              longitude: order.Lng,
+            }}
+            title="Delivery Location"
+            description={order.Address}
+            identifier="destination"
+          />
+        )}
+      </MapView>
     </Card>
   );
 };
